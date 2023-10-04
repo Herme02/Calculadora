@@ -40,8 +40,8 @@ if(request.getParameter("borrar") != null) {
 } else if(request.getParameter("resolver") != null) {
     calculadora.introducirCalculos(numero, operador, mostrar);
     
-    double resultado = calculadora.resolver();
-    out.println("Resultado: " + resultado);
+     double resultado = calculadora.resolver(mostrar);
+     out.println("Resultado: " + resultado);
 }
 %>
 
@@ -70,7 +70,8 @@ if(request.getParameter("borrar") != null) {
 	  
 	<br>
 
-<select name="select" class="btn btn-success" name="operadorActual" id="operadorActual">
+<select class="btn btn-success" name="operacion" id="operacion">
+	<option></option>
   <option value="+">+</option>
   <option value="-">-</option>
 </select>
