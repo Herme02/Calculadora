@@ -1,3 +1,4 @@
+<%@page import="org.eclipse.jdt.internal.compiler.env.NameEnvironmentAnswer"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 
     pageEncoding="ISO-8859-1"%>
@@ -22,7 +23,7 @@
 
 
 
-
+<%! StringBuilder mostrar = new StringBuilder(""); %>
 
 <%
 String numero = request.getParameter("numero") != null ? request.getParameter("numero") : "";
@@ -31,13 +32,13 @@ Calculadora calculadora = new Calculadora();
 
 
 if(request.getParameter("borrar") != null) {
-    calculadora.limpiar();
+    calculadora.limpiar(mostrar);
     
 } else if(request.getParameter("enviar") != null) {
-    calculadora.introducirCalculos(numero, operador);
+    calculadora.introducirCalculos(numero, operador, mostrar);
     
 } else if(request.getParameter("resolver") != null) {
-    calculadora.introducirCalculos(numero, operador);
+    calculadora.introducirCalculos(numero, operador, mostrar);
     
     double resultado = calculadora.resolver();
     out.println("Resultado: " + resultado);
@@ -57,7 +58,7 @@ if(request.getParameter("borrar") != null) {
  <div class="panel-body">
  <div class="input-group">
  <label class="input-group-addon">Resultado</label>
- <input type="text" class="form-control" name="resultado" id="resultado" aria-describedby="basic-addon3">
+ <input type="text" class="form-control" name="resultado" id="resultado" value="<%out.print(mostrar); %>" aria-describedby="basic-addon3">
  </div>
  <br>
  <div class="input-group">
@@ -69,18 +70,18 @@ if(request.getParameter("borrar") != null) {
 	  
 	<br>
 
-<select name="select" class="btn btn-success" name="operacion" id="operacion">
-  <option value="value1">+</option>
-  <option value="value3">-</option>
+<select name="select" class="btn btn-success" name="operadorActual" id="operadorActual">
+  <option value="+">+</option>
+  <option value="-">-</option>
 </select>
 
  </div>
  </div>
 <br>
  
- <button type="submit" class="btn btn-primary btn-lg btn-block" id="enviar" value="enviar">ENVIAR</button>
- <button type="submit" class="btn btn-primary btn-lg btn-block" id="borrar" value="borrar">BORRAR</button>
- <button type="submit" class="btn btn-primary btn-lg btn-block" id="resolver" value="resolver">RESOLVER</button>
+ <button type="submit" class="btn btn-primary btn-lg btn-block" name="enviar" id="enviar" value="enviar">ENVIAR</button>
+ <button type="submit" class="btn btn-primary btn-lg btn-block"  name="borrar" id="borrar" value="borrar">BORRAR</button>
+ <button type="submit" class="btn btn-primary btn-lg btn-block"  name="resolver" id="resolver" value="resolver">RESOLVER</button>
  </div>
  </div>
 </div>

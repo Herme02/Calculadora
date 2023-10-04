@@ -29,18 +29,21 @@ public class Calculadora {
     }
 
 
-    public void limpiar() {
+    public void limpiar(StringBuilder mostrar) {
         resultado = 0.0;
         numeroActual = 0.0;
         operadorActual = "";
+        mostrar.setLength(0);
     }
 
 
-    public void introducirCalculos(String numero, String operador) {
+    public void introducirCalculos(String numero, String operador, StringBuilder mostrar) {
         if (!numero.isEmpty()) {
             numeroActual = Double.parseDouble(numero);
+            mostrar.append(numero);
         }
         operadorActual = operador;
+        mostrar.append(operador);
     }
 
     public double resolver() {
