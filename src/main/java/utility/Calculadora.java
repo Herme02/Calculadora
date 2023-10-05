@@ -19,14 +19,7 @@ public class Calculadora {
     }
 
 
-    public void sumar(double numero) {
-        resultado += numero;
-    }
-
-
-    public void restar(double numero) {
-        resultado -= numero;
-    }
+    
 
 
     public void limpiar(StringBuilder mostrar) {
@@ -64,19 +57,40 @@ public class Calculadora {
 //    }
     
     public double resolver(StringBuilder mostrar) {
-    	resultado = Character.getNumericValue(mostrar.charAt(0));
-    	for(int i = 1;i < mostrar.length();i++) {
-    		if(mostrar.charAt(i)== '+') {
-    			resultado += Character.getNumericValue(mostrar.charAt(i+1));
-    		}
-    		if(mostrar.charAt(i)== '-') {
-    			resultado -= Character.getNumericValue(mostrar.charAt(i+1));
-    		}
-    	}
-    	mostrar.delete(0, mostrar.length());
-    	mostrar.append(resultado);
-    	
-    	return resultado;
-    }
+    	resultado = 0; 
+        int operando = 0; 
+        char operador = '+'; 
 
+        for (int i = 0; i < mostrar.length(); i++) {
+            char caracter = mostrar.charAt(i);
+            if (caracter == '+' || caracter == '-') {
+               
+               
+                if (operador == '+') {
+                    resultado += operando;
+                } else if (operador == '-') {
+                    resultado -= operando;
+                }
+
+               
+                operador = caracter;
+                operando = 0;
+            } else {
+
+                operando = operando * 10 + Character.getNumericValue(caracter);
+            }
+        }
+
+        
+        if (operador == '+') {
+            resultado += operando;
+        } else if (operador == '-') {
+            resultado -= operando;
+        }
+
+        mostrar.delete(0, mostrar.length()); 
+        mostrar.append(resultado);
+
+        return resultado;
+    }
 }
