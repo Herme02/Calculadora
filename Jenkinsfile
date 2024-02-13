@@ -8,11 +8,13 @@ pipeline {
             }
         }
         stage('Build') {
-            steps {
-                sh 'mkdir -p webapps/Calculadora'
-                sh 'cp -r * webapps/Calculadora'
-            }
-        }
+    steps {
+        // Crear directorio Calculadora dentro de webapps
+        sh 'mkdir -p webapps/Calculadora'
+        // Copiar archivos y directorios necesarios a Calculadora
+        sh 'cp -r * webapps/Calculadora/'
+    }
+}
         stage('Deploy') {
             steps {
                 echo 'Despliegue exitoso'
