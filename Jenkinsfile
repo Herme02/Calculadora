@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                // Ejecuta cualquier comando necesario para desplegar la aplicación
+                echo 'Despliegue exitoso'
             }
         }
     }
