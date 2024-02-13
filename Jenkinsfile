@@ -17,6 +17,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 // Paso de despliegue - Aquí puedes agregar los comandos necesarios para desplegar la aplicación
+                echo 'Despliegue exitoso'
             }
         }
     }
