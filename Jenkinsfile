@@ -1,23 +1,23 @@
 pipeline {
     agent any
-
+    
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                // Paso de construcción - Ejemplo con Maven
-                sh 'mvn clean package'
+                // Checkout del repositorio
+                git 'https://github.com/Herme02/Calculadora.git'
             }
         }
-        stage('Test') {
+        stage('Build') {
             steps {
-                // Paso de prueba - Ejemplo con Maven
-                sh 'mvn test'
+                // Compilación de la aplicación JSP (en este caso, asumimos que es solo copiar archivos JSP)
+                sh 'cp -r * $CATALINA_HOME/webapps/Calculadora'
             }
         }
         stage('Deploy') {
             steps {
-                // Paso de despliegue - Aquí puedes agregar los comandos necesarios para desplegar la aplicación
-                echo 'Despliegue exitoso'
+                // Reiniciar el servidor Tomcat para desplegar la aplicación
+                sh 'sudo service tomcat restart'
             }
         }
     }
