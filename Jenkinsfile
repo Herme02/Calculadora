@@ -10,6 +10,8 @@ pipeline {
         }
         stage('Build') {
             steps {
+                // Crear la carpeta webapps/Calculadora si no existe
+                sh 'mkdir -p $CATALINA_HOME/webapps/Calculadora'
                 // Compilación de la aplicación JSP (en este caso, asumimos que es solo copiar archivos JSP)
                 sh 'cp -r * $CATALINA_HOME/webapps/Calculadora'
             }
