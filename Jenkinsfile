@@ -9,10 +9,10 @@ pipeline {
         }
         stage('Build') {
     steps {
-        // Crear directorio Calculadora dentro de webapps
+        // Crear directorio Calculadora dentro de webapps si no existe
         sh 'mkdir -p webapps/Calculadora'
         // Copiar archivos y directorios necesarios a Calculadora
-        sh 'cp -r Jenkinsfile build src webapps/* webapps/Calculadora/'
+        sh 'cp -r Jenkinsfile build src webapps/Calculadora/'
     }
 }
         stage('Deploy') {
